@@ -1,0 +1,45 @@
+<form #yearsearch="ngForm" (ngSubmit)="onClickSubmit(yearsearch.value)">
+
+  <label for="year">Year:</label><br>
+
+  <input type="number" min="2001" max="2022" name="year" ngModel="2021">
+
+  <label for="leagueId">League:</label>
+  <select id="leagueId"
+          name="leagueId"
+          ngModel>
+    <option *ngFor="let league of leagueList" name="leagueId" [ngValue]=league.league.id>{{league.league.name}}</option>
+
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+<div class="table-wrapper">
+
+  <table class="table" *ngIf="players.length!=0">
+    <thead>
+    <th></th>
+    <th><h3>Player</h3></th>
+    <th><h3>Minutes</h3></th>
+    <th><h3>Goals</h3></th>
+    <th><h3> Goals Per Game</h3></th>
+    <th><h3> Hattricks Per {{currentBinge.nickname}}</h3></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of players">
+        <td font-size='24px'><img src="{{player.player.photo}}" /></td>
+        <td font-size='24px'>{{player.player.name}}</td>
+        <td>{{player.statistics[0].games.minutes}}</td>
+        <td>
+          {{player.statistics[0].goals.total}}
+        </td>
+        <td>
+          {{getRatio(player).toFixed(2)}}
+        </td>
+        <td>
+          {{hattricksPer(player).toFixed(2)}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+img {
+  height: 100px;
+  vertical-align: text-top;
+}
+td{
+    text-align:center !important;
+    height:100px !important;
+}
+th {
+  text-align: center;
+}
+tr{
+    background-color: white !important;
+}
